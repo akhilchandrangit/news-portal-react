@@ -8,14 +8,15 @@ import { getArticles } from '../services/NewsService';
 
 const Feeds: React.FC = () => {
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(10);
+  const [offset, setOffset] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(20);
   const [total, setTotal] = useState<number>(0);
   const [section, setSection] = useState<string | null>(null);
   const [articles, setArticles] = useState([]);
   const { addArticle } = useReadLater();
   const { isLoading, data, isError } = useQuery(
-    ['articles', page, limit, section],
-    () => getArticles(page, limit, section as string)
+    ['articles', offset, limit, section],
+    () => getArticles(offset, limit, section as string)
   );
 
   useEffect(() => {
@@ -24,6 +25,12 @@ const Feeds: React.FC = () => {
       setTotal(data.data.num_results);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (page & limit) {
+      setOffset(page - 1 * limit);
+    }
+  }, [page, limit]);
 
   return (
     <div className="flex flex-wrap">
@@ -86,9 +93,10 @@ const Feeds: React.FC = () => {
               <Pagination
                 page={page}
                 total={limit}
-                onClick={setPage}
-                onPrevious={() => setPage(page > 0 ? page - 1 : 0)}
-                onNext={() => setPage(page + 1)}
+                onClick={(page) => {
+                  setPage(page);
+                  setOffset((page - 1) * limit)
+                }}
               />
             </div>
           </>

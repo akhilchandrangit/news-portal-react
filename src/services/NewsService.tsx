@@ -11,12 +11,12 @@ export const getSections = async (): Promise<any> => {
 };
 
 export const getArticles = async (
-  page: number,
+  offset: number,
   limit: number,
   section?: string,
 ): Promise<any> => {
   const data = axios.get(
-    `https://api.nytimes.com/svc/news/v3/content/all/${section ?? 'all'}.json?api-key=${apiKey}&page=${page}&limit=${limit}`
+    `https://api.nytimes.com/svc/news/v3/content/all/${section ?? 'all'}.json?api-key=${apiKey}&offset=${offset}&limit=${limit}`
   );
 
   return data;

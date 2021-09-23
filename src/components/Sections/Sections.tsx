@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Sections: React.FC<Props> = ({ onClick }) => {
-  const { data, isLoading, isError } = useQuery('sections', getSections);
+  const { data, isLoading } = useQuery('sections', getSections);
 
   return (
     <div className="py-4 artboard artboard-demo bg-base-200">
