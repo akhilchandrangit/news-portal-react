@@ -59,11 +59,13 @@ const ReadLater: React.FC = () => {
         ))}
       </div>
       <div className="flex justify-center">
-        <Pagination
-          page={page}
-          total={Math.ceil(items.length / limit)}
-          onClick={setPage}
-        />
+        {items.length > limit && (
+          <Pagination
+            page={page}
+            total={Math.ceil(items.length / limit)}
+            onClick={setPage}
+          />
+        )}
       </div>
     </div>
   );
