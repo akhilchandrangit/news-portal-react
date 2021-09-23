@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
   return (
     <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
       <div className="flex-none px-2 mx-2">
-        <Link to="/feeds" className="text-lg font-bold">
+        <Link to={user ? '/feeds' : '/login'} className="text-lg font-bold">
           News
         </Link>
       </div>
