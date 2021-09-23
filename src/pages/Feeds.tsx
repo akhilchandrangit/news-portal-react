@@ -10,11 +10,10 @@ const Feeds: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [offset, setOffset] = useState<number>(0);
   const [limit, setLimit] = useState<number>(20);
-  const [total, setTotal] = useState<number>(0);
   const [section, setSection] = useState<string | null>(null);
   const [articles, setArticles] = useState([]);
   const { addArticle } = useReadLater();
-  const { isLoading, data, isError } = useQuery(
+  const { isLoading, data } = useQuery(
     ['articles', offset, limit, section],
     () => getArticles(offset, limit, section as string)
   );
@@ -22,7 +21,6 @@ const Feeds: React.FC = () => {
   useEffect(() => {
     if (data?.data?.results) {
       setArticles(data.data.results);
-      setTotal(data.data.num_results);
     }
   }, [data]);
 
