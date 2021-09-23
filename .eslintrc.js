@@ -20,9 +20,10 @@ module.exports = {
   rules: {
     quotes: [2, 'single', { avoidEscape: true }],
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    'react-hooks/exhaustive-deps': 0,
   },
   settings: {
     react: {

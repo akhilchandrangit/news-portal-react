@@ -1,17 +1,20 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../context/UserContext';
 import useReadLater from '../hooks/useReadLater';
+import { getUserSavedArticles } from '../lib/utility';
 
 const ReadLater: React.FC = () => {
+  const { user } = useContext(UserContext);
   const savedArticles =
     JSON.parse(localStorage.getItem('saved') as string) ?? [];
-  const [items, setItems] = useState(savedArticles);
+  const [items, setItems] = useState(getUserSavedArticles(savedArticles, user));
   const { removeArticle } = useReadLater();
 
   const removeFromSaved = (slug: string) => {
     removeArticle(slug);
     const savedArticles =
       JSON.parse(localStorage.getItem('saved') as string) ?? [];
-    setItems(savedArticles);
+    setItems(getUserSavedArticles(savedArticles, user));
   };
 
   return (

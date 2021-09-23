@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { UserContext } from '../context/UserContext';
 import { loginSchema } from '../lib/validation';
 import { User } from '../types';
 
@@ -12,7 +14,7 @@ type FormInputs = {
 
 const Login: React.FC = () => {
   const history = useHistory();
-
+  const { setUser } = useContext(UserContext)
   const {
     register,
     handleSubmit,
@@ -32,6 +34,7 @@ const Login: React.FC = () => {
       return;
     }
     localStorage.setItem('user', JSON.stringify(user));
+    setUser(user);
     toast.success('Success');
     history.push('/feeds');
   };
