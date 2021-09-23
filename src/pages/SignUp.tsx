@@ -41,6 +41,7 @@ const SignUp: React.FC = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="p-10 card bg-base-200 w-full sm:w-1/3 m-auto"
       >
+        <h2 className="text-center font-bold mb-2">Signup</h2>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>

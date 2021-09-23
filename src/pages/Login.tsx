@@ -45,6 +45,7 @@ const Login: React.FC = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="p-10 card bg-base-200 w-full sm:w-1/3 m-auto"
       >
+        <h2 className="text-center font-bold mb-2">Login</h2>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
